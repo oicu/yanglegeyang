@@ -2,8 +2,9 @@
 
 :sheep: :ram: :goat: :sheep: :ram: :goat: :sheep: :ram: :goat:
 
-> 验证通过的版本：2022-09-18 羊了个羊小程序 v20  
-> 别人只发结果，我这主要是讲原理，玩游戏不是目的，重要是学习知识。
+验证通过的版本：2022-09-18 羊了个羊小程序 v20
+
+主要是讲原理，玩游戏不是目的，重要是学习知识。
 
 ## 1. API 接口一键通关
 
@@ -21,7 +22,7 @@ Python 和 Java 版本又是依赖又是编译，麻烦得要死，不如用 Win
 1. 查看抓包工具记录里域名 *cat-match.easygame2021.com* 请求体中的 `t` 值和 `User-Agent` 值（脚本里默认是 iPhone 15.7）。
 1. 修改脚本里的 `$header_t` 和 `$header_user_agent` 参数。
 1. 打开 _Windows PowerShell ISE_，输入 `Set-Executionpolicy RemoteSigned` 允许后再运行通关脚本。
- 
+
 ### 1.3. 推荐的抓包工具
 
 | 平台 | 软件 | 备注 |
@@ -30,29 +31,29 @@ Python 和 Java 版本又是依赖又是编译，麻烦得要死，不如用 Win
 |Android|HttpCanary| |
 |iOS|Stream|[Lcry 编写的保姆级 Stream 教程](https://github.com/Lcry/a-sheep-assistant/blob/main/docs/stream.md)|
 
-> 其实 PC 版微信 v3.2.1 连抓包都不需要，`Applet\wx141bfb9b73c970a9\.S0` 文件里就有明文的 token 值，  
-> 已通关的日期和获得的皮肤也记录在这个文件里，  
-> 但这个文件里的 prop_remove、prop_cancel、prop_random 的值是动态更新的，无法修改。  
-> PC 版本微信 v3.7.6 使用 `usrkvstorage0.db` 键值文件保存配置，非明文。
- 
-### 1.4. 参考链接
+其实 PC 版微信 v3.2.1 连抓包都不需要，`Applet\wx141bfb9b73c970a9\.S0` 文件里就有明文的 token 值，已通关的日期和获得的皮肤也记录在这个文件里，但这个文件里的 prop_remove、prop_cancel、prop_random 的值是动态更新的，无法修改。
 
-Java 版本
-* https://github.com/Selina1981/yanglegeyang
+PC 版本微信 v3.7.6 使用 `usrkvstorage0.db` 键值文件保存配置，非明文。
+
+### 1.4. 参考链接
 
 Python 版本
 * https://github.com/Lcry/a-sheep-assistant
 * https://www.gaoyuanqi.cn/python-requests-ylgy
 
+Java 版本有 $ 嫌疑，去掉了。
+
 ## 2. 重复第一关
 
 ### 2.1. 原理
 
-`80001` 就是第一关的代号，把游戏资源文件里每一关的代号都修改为第一关即可。`10017` 也是类似的意思，也都修改。
+`80001` 就是第一关的代号，把游戏资源文件里每一关的代号都修改为第一关即可。
+
+`10017` 也是类似的意思，也都修改。
 
 ### 2.2. PC 版微信
 
-> 支持最新的 PC 版微信 v3.7.6
+支持最新的 PC 版微信 v3.7.6
 
 用 `Everything` 搜索《羊了个羊》小程序的 ID 号 `wx141bfb9b73c970a9`
 
@@ -78,11 +79,9 @@ Python 版本
 
 ## 4. 无限道具版本制作原理
 
-> 只测试了 PC 版微信，Android 懒得试。  
-> 别人都是发制作好的文件，不一定支持新版本的小程序。  
-> 我这里介绍的是制作方法，理论上支持最新版本的小程序。  
-> PC 微信 v3.7.6 使用修改过的小程序会提示“加载小程序代码包失败”，  
-> 我猜测打开小程序前加了哈希验证，所以建议安装 `PC 微信 v3.2.1` 版本。
+只测试了 PC 版微信，Android 懒得试。我这里介绍的是制作方法，理论上支持最新版本的小程序。
+
+PC 微信 v3.7.6 使用修改过的小程序会提示“加载小程序代码包失败”，我猜测打开小程序前加了哈希验证，所以建议安装 `PC 微信 v3.2.1` 版本。
 
 ### 4.1. 原理
 
@@ -96,10 +95,10 @@ Python 版本
 
 因为 PC 版微信的小程序文件 wxapkg 是加密的，先解密才能修改，任选一种工具：
 
-1. go 版解密 https://github.com/BlackTrace/pc_wxapkg_decrypt  
+1. go 版解密 https://github.com/BlackTrace/pc_wxapkg_decrypt
 `pc_wxapkg_decrypt.exe -wxid wx141bfb9b73c970a9 -in __APP__.wxapkg -out dec.wxapkg`
 
-2. python 版解密 https://github.com/superdashu/pc_wxapkg_decrypt_python  
+2. python 版解密 https://github.com/superdashu/pc_wxapkg_decrypt_python
 `py -3 pc_wxapkg_decrypt.py --wxid wx141bfb9b73c970a9 -f __APP__.wxapkg -o dec.wxapkg`
 
 3. python 版解密 https://github.com/xiongnemo/wxapkg_v1mmwx_decrypt
