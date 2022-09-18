@@ -17,8 +17,8 @@ Python 和 Java 版本又是依赖又是编译，麻烦得要死，不如用 Win
 
 | 平台 | 软件 | 备注 |
 | --- | --- | -- |
-|PC|Fiddler、HTTPDebugger、Charles| 如果最新版 PC 微信可能抓不到，就换低版本微信 |
-|Android|HttpCarry| |
+|PC|Fiddler、HTTPDebugger、Charles| 最新版 PC 微信抓不到，换低版本微信 |
+|Android|HttpCanary| |
 |iOS|Stream|[Lcry 编写的保姆级 Stream 教程](https://github.com/Lcry/a-sheep-assistant/blob/main/docs/stream.md)|
 
 ## 参考链接
