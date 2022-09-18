@@ -38,8 +38,8 @@ PC 版本微信 v3.7.6 使用 `usrkvstorage0.db` 键值文件保存配置，非�
 ### 1.4. 参考链接
 
 Python 版本
-* https://github.com/Lcry/a-sheep-assistant
-* https://www.gaoyuanqi.cn/python-requests-ylgy
+- [a-sheep-assistant](https://github.com/Lcry/a-sheep-assistant) 
+- [python-requests-ylgy](https://www.gaoyuanqi.cn/python-requests-ylgy)
 
 Java 版本有 $ 嫌疑，去掉了。
 
@@ -55,9 +55,9 @@ Java 版本有 $ 嫌疑，去掉了。
 
 支持最新的 PC 版微信 v3.7.6
 
-用 `Everything` 搜索《羊了个羊》小程序的 ID 号 `wx141bfb9b73c970a9`
+用 `Everything` 搜索《羊了个羊》小程序的 ID 号 `wx141bfb9b73c970a9`，会有 2 个文件夹，一个是存放小程序，一个是存放用户数据。
 
-正常有 2 个文件夹，进入用户数据文件夹，再继续用 `Everything` 的**指定目录搜索** `.json content:80001`
+进入用户数据的文件夹，再继续用 `Everything` 的**指定目录搜索** `.json content:80001`
 
 修改最新的一个 json 文件即可，原文件大小约 2KB，参考内容如下：
 
@@ -67,7 +67,7 @@ Java 版本有 $ 嫌疑，去掉了。
 
 ### 2.3. Android 手机
 
-安卓手机的修改方法类似，不重复造车轮，请看 https://new.qq.com/rain/a/20220917A048QV00
+安卓手机的修改方法类似，不重复造车轮，请看[点链接](https://new.qq.com/rain/a/20220917A048QV00)。
 
 ## 3. 连续通关及重玩
 
@@ -89,26 +89,34 @@ PC 微信 v3.7.6 使用修改过的小程序会提示“加载小程序代码包
 
 ### 4.2. 制作方法
 
-用 `Everything` 搜索《羊了个羊》小程序的 ID 号 `wx141bfb9b73c970a9`
+#### 4.2.1. 解密 wxapkg 文件
 
-进入程序所在目录，有多个版本的就进入最新版本子目录，比如 `20`
+用 `Everything` 搜索《羊了个羊》小程序的 ID 号 `wx141bfb9b73c970a9`，会有 2 个文件夹，一个是存放小程序，一个是存放用户数据。
+
+进入小程序 wxapkg 文件所在的文件夹，里面会有数字命名的子文件夹，进入最大的那个数字文件夹，比如 `20`，会看到 `__APP__.wxapkg` 文件。
 
 因为 PC 版微信的小程序文件 wxapkg 是加密的，先解密才能修改，任选一种工具：
 
-1. go 版解密 https://github.com/BlackTrace/pc_wxapkg_decrypt
-`pc_wxapkg_decrypt.exe -wxid wx141bfb9b73c970a9 -in __APP__.wxapkg -out dec.wxapkg`
+- [x] go 版解密 [pc_wxapkg_decrypt](https://github.com/BlackTrace/pc_wxapkg_decrypt)
 
-2. python 版解密 https://github.com/superdashu/pc_wxapkg_decrypt_python
-`py -3 pc_wxapkg_decrypt.py --wxid wx141bfb9b73c970a9 -f __APP__.wxapkg -o dec.wxapkg`
+  `pc_wxapkg_decrypt.exe -wxid wx141bfb9b73c970a9 -in __APP__.wxapkg -out dec.wxapkg`
 
-3. python 版解密 https://github.com/xiongnemo/wxapkg_v1mmwx_decrypt
+- [ ] python 版解密 [pc_wxapkg_decrypt_python](https://github.com/superdashu/pc_wxapkg_decrypt_python) 或者 [wxapkg_v1mmwx_decrypt](https://github.com/xiongnemo/wxapkg_v1mmwx_decrypt)
 
-得到解密的文件 `dec.wxapkg`，无需反编译，用 EverEdit 等支持 HEX 模式的编辑器打开，直接二进制修改，
+  `py -3 pc_wxapkg_decrypt.py --wxid wx141bfb9b73c970a9 -f __APP__.wxapkg -o dec.wxapkg`
+
+#### 4.2.2. 编辑 wxapkg 文件
+
+得到解密的文件 `dec.wxapkg`，无需反编译，用 EverEdit 等支持 HEX 模式的编辑器打开，直接二进制修改（也可以用 python 或者 sed 修改文件，我懒得写代码）。
 
 要无限洗牌道具就把 `prop_random--` 里的 `--` 替换为 2 个空格，撤销、移出的道具修改方法类似。
+
+#### 4.2.3. 加密 wxapkg 文件
 
 重新加密 wxapkg 文件（我写的脚本，还没开源，懂看解密的自然懂写加密）
 
 `py -3 pc_wxapkg_encrypt.py --wxid wx141bfb9b73c970a9 -f dec.wxapkg -o __APP__.wxapkg`
+
+#### 4.2.4. 验证
 
 然后重新进入小程序，获取一次洗牌道具后就可以无限洗牌了。
