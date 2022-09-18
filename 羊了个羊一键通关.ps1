@@ -1,4 +1,4 @@
-<#
+﻿<#
 Author: oicu@github.com
 Date: 2022-09-17
 PowerShell Version: 5.1
